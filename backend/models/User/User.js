@@ -4,23 +4,23 @@ const { Schema, model } = require("mongoose");
 const UserSchema = Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   secondName: {
-    type: String
+    type: String,
   },
   age: {
     type: Number,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
 });
 

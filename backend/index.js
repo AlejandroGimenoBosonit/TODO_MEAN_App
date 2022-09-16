@@ -1,15 +1,15 @@
 // express
-const express = require('express');
+const express = require("express");
 // cors
-const cors = require('cors');
+const cors = require("cors");
 
 // configure dotenv
-require('dotenv').config();
+require("dotenv").config();
 
 // production use
 // const path = require('path');
 
-const { dbConnection } = require('./database/database-config');
+const { dbConnection } = require("./database/database-config");
 
 /////////////////////////////////////////////////////////
 
@@ -21,17 +21,17 @@ dbConnection();
 
 // middlewares
 // Public Directory Middleware
-app.use( express.static('./public') );
+app.use(express.static("./public"));
 //cross-domain midleware
-app.use( cors() );
+app.use(cors());
 // body-reading midleware
-app.use( express.json() );
+app.use(express.json());
 
 //routes
-app.use( '/api/auth',require('./routes/auth/auth.routes') );
-app.use( '/dashboard', require('./routes/dashboard/dashboard.routes') );
+app.use("/api/auth", require("./routes/auth/auth.routes"));
+app.use("/dashboard", require("./routes/dashboard/dashboard.routes"));
 
 // SERVER LISTENING
 const port = process.env.PORT || 3000;
 
-app.listen( port, ()=> console.log(`Server running at port ${port}`))
+app.listen(port, () => console.log(`Server running at port ${port}`));
