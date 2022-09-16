@@ -1,16 +1,25 @@
-const { Router } = require('express');
+const { Router } = require("express");
 
-const { getAllCards, addCard, updateCard, deleteCard } = require('../../controllers/dashboard/card.controller');
+const {
+  getAllCards,
+  addCard,
+  updateCard,
+  deleteCard,
+  getCardById,
+} = require("../../controllers/dashboard/card.controller");
 
 const router = Router();
 
-// get cards from database
-router.get('/', getAllCards);
 // add card to database
-router.post('/', addCard);
+router.post("/", addCard);
+// get cards from database
+router.get("/:user_id/all", getAllCards);
+// get card by id
+router.get("/:user_id/:id", getCardById);
+
 // update card information
-router.put('/:id', updateCard);
+router.put("/:user_id/:id", updateCard);
 // delete card from database
-router.delete('/:id', deleteCard)
+router.delete("/:user_id/:id", deleteCard);
 
 module.exports = router;
