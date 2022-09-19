@@ -6,7 +6,7 @@ const validateJWT = (req = request, res = response, next) => {
 
   if (!readedToken) {
     return res.status(401).json({
-      ok: false,
+      process_ok: false,
       msg: "Error with token",
     });
   }
@@ -19,7 +19,7 @@ const validateJWT = (req = request, res = response, next) => {
     req.name = name;
   } catch (error) {
     return res.status(401).json({
-      ok: false,
+      process_ok: false,
       msg: "Invalid Token",
     });
   }

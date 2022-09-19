@@ -6,6 +6,9 @@ const {
   authenticateUser,
   registerUser,
   tokenValidator,
+  getUser,
+  updateUser,
+  deleteUser
 } = require("../../controllers/auth/auth.controller");
 
 // middlewares
@@ -48,7 +51,31 @@ router.post(
   registerUser
 );
 
+// get user data
+router.get(
+  
+  // path
+  "/",
+  // validations
+  validateJWT,
+  // controller
+  getUser
+)
+
+router.put(
+  '/:id',
+  updateUser
+);
+
+router.delete(
+  '/:id',
+  deleteUser
+);
+
+
+
+
 // Validate Token
-router.get("/renew", validateJWT, tokenValidator);
+// router.get("/renew", validateJWT, tokenValidator);
 
 module.exports = router;
