@@ -38,9 +38,6 @@ const authenticateUser = async (req = request, res = response) => {
     // response
     return res.status(200).json({
       process_ok: true,
-      uid: user.id,
-      name: user.name,
-      email: user.email,
       token,
     });
   } catch (error) {
