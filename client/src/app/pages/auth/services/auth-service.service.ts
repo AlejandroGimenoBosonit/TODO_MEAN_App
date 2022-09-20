@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 // interfaces
-import { registerForm, authResponse, loginForm } from '../../interfaces/interface';
+import { UserInfo, authResponse, loginForm } from '../../../interfaces/interface';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class AuthServiceService {
   constructor( private http: HttpClient ) { }
 
   // methods
-  register( payload: registerForm ): Observable<authResponse> {
+  register( payload: UserInfo ): Observable<authResponse> {
     // console.log(payload);
     // http request
     return this.http.post<authResponse>( `${this._endPoint}/api/auth/register`, payload );

@@ -1,9 +1,10 @@
-export interface registerForm {
+export interface UserInfo {
+    id?: string;
     age: number;
     email: string;
     name: string;
-    password: string;
-    password2: string;
+    password?: string;
+    password2?: string;
     secondName: string;
 }
 
