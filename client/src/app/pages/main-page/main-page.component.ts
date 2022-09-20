@@ -6,13 +6,11 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './main-page.component.html',
   styles: [`
     .main-title {
-
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* align-content:center; */
       min-height: 80vh;
     }
   `]

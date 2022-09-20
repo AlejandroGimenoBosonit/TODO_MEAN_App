@@ -1,1 +1,124 @@
-<p>register works!</p>
+<div class="card-container">
+  <!-- card -->
+  <p-card
+    header="Register Form"
+    class="flex flex-row flex-wrap justify-content-center"
+    [style]="{ 'max-width': '500px', height: '100%' }"
+  >
+    <hr />
+
+    <!-- reactive form -->
+    <div class="row">
+      <div class="col m-3">
+        <form [formGroup]="myForm" (ngSubmit)="register()">
+          <!-- Name -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                formControlName="name"
+                placeholder="First Name..."
+              />
+            </div>
+          </div>
+
+          <!-- Second Name -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">S.Name</label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                formControlName="secondName"
+                placeholder="Second Name..."
+              />
+            </div>
+            <span *ngIf="validField('secondName')" class="form-text text-danger" >
+              Your second name is required!
+            </span>
+          </div>
+
+          <!-- Age -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Age</label>
+            <div class="col-sm-9">
+              <input type="number" formControlName="age" placeholder="Age..." />
+            </div>
+            <span *ngIf="validField('age')" class="form-text text-danger" >
+              You must be older than 17!
+            </span>
+          </div>
+
+          <!-- email -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input
+                type="email"
+                formControlName="email"
+                placeholder="Email..."
+              />
+            </div>
+            <span *ngIf="validField('email')" class="form-text text-danger" >
+              {{ emailErrorMssg }}
+            </span>
+          </div>
+
+          <!-- Password -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+              <input
+                type="password"
+                formControlName="password"
+                placeholder="Password..."
+              />
+            </div>
+          </div>
+
+          <!-- Repeat Password -->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">R.Password</label>
+            <div class="col-sm-9">
+              <input
+                type="password"
+                formControlName="password2"
+                placeholder="Repeat Password..."
+              />
+            </div>
+          </div>
+
+          <button
+            [disabled]="myForm.invalid"
+            type="submit"
+            class="btn btn-primary"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- ------------- -->
+
+    <ng-template pTemplate="footer">
+      Do you have have an account already? <a routerLink="/login">Login</a>!
+    </ng-template>
+  </p-card>
+  <!-- ---- -->
+  <!-- Debugging -->
+
+    <!-- <div class="debugging">
+        <h2>Form Valid: {{ myForm.valid }}</h2> 
+        
+        <h2>Form State: {{ myForm.status }}</h2>
+
+        <pre> name: {{ myForm.controls['name'].touched | json }} </pre>
+        <pre> name: {{ myForm.controls['name'].errors | json }} </pre>
+        <pre> second name: {{ myForm.controls['secondName'].errors | json }} </pre>
+        <pre> age: {{ myForm.controls['age'].errors | json }} </pre>
+        <pre> email {{ myForm.controls['email'].errors | json }} </pre>
+        <pre> pass1: {{ myForm.controls['password'].errors | json }} </pre>
+        <pre> pass2: {{ myForm.controls['password2'].errors | json }} </pre>
+    </div> -->
+</div>
+
