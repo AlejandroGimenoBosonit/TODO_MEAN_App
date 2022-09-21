@@ -11,7 +11,7 @@ import { UserInfo } from '../../interfaces/interface';
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] = [];
-  user!: UserInfo;
+  user!: any;
 
   constructor() { }
 
@@ -23,7 +23,8 @@ export class NavbarComponent implements OnInit {
 
   // methods
   getNavbarItems(token : string) {
-    if (token){
+    
+    if (!token){
       return this.items = [
         {
           label: 'Login',
@@ -39,20 +40,17 @@ export class NavbarComponent implements OnInit {
     }else{
       // call getData to use user's info
 
-      // this.user = {
-
-      // };      
+      this.user = {
+        name: 'John',
+        secondName: 'Doe',
+      };      
 
       return this.items = [
+        // Icon
         {
-          label: 'meh',
-          icon: 'pi pi-user',
-          routerLink: 'login'
-        },
-        {
-          label: 'meh',
-          icon: 'pi pi-user-edit',
-          routerLink: 'register'
+          label: `${this.user.name} ${this.user.secondName}`,
+          icon: 'pi pi-reddit',
+          // routerLink to user account settings
         }
       ];
     }

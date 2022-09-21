@@ -1,1 +1,14 @@
-<p>dashboard works!</p>
+<!-- Card Element -->
+<div class="workspace">
+  <h2 class="workspace_title">
+    {{ userModel.name }} {{ userModel.secondName }}'s Workspace
+  </h2>
+  <hr />
+  <!-- Card Matrix -->
+  <app-card-matrix [cards]="userCards" ></app-card-matrix>
+  <!-- ----------- -->
+</div>
+<!-- ------------ -->
+<!-- 
+<pre> {{ userModel | json }} </pre>
+<pre> {{ userCards | json }} </pre> -->
