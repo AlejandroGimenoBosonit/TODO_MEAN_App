@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/auth/Login/login.component';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { RegisterComponent } from './pages/auth/Register/register.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MainPageComponent } from './tasks/pages/main-page/main-page.component';
+import { NotFoundComponent } from './tasks/pages/not-found/not-found.component';
 
 const routes: Routes = [
   // main page
   { path: 'main', component: MainPageComponent },
-  // authentication
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  // dashboard
-  { path: 'dashboard', component: DashboardComponent },
+  // tasks
+  {
+    path: 'tasks',
+    loadChildren: ()=> import('./tasks/tasks.module').then(module=>module.TasksModule)
+  },
   // not found
   { path: 'not-found', component: NotFoundComponent },
   // default
