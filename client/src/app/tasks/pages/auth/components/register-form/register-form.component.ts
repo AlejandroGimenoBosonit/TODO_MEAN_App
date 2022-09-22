@@ -1,29 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthServiceService } from '../services/auth-service.service';
-import { ValidationsServiceService } from '../services/validations-service.service';
+import { AuthServiceService } from '../../services/auth-service.service';
+import { ValidationsServiceService } from '../../services/validations-service.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styles: [
-    `
-      .card-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        min-height: 90vh;
-        min-width: 20vh;
-      }
-      span {
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styles: [`
+    span {
         width: 224px;
         text-align: center;
       }
-    `,
-  ],
+  `]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
+
   myForm: FormGroup = this.fb.group(
     {
       name: ['', [Validators.required]],
@@ -41,12 +33,15 @@ export class RegisterComponent implements OnInit {
   );
 
   constructor(
+    private rt: Router,
     private fb: FormBuilder,
     private vs: ValidationsServiceService,
     private as: AuthServiceService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
   // methods
 
   get emailErrorMssg(): string {
@@ -70,6 +65,19 @@ export class RegisterComponent implements OnInit {
   register() {
     this.as
         .register( this.myForm.value )
-        .subscribe(console.log);
+        .subscribe( response => {
+          const { process_ok, token } = response;
+          if(process_ok){
+            // store toke nat local storage
+            localStorage.setItem( 'x-token', token! );
+            // redirect to dashboard
+            this.rt.navigate(['/tasks/dashboard']);
+          }else{
+            // PROBLEM PAGE
+            console.log('nothing');
+          }
+          
+        })
   }
+
 }

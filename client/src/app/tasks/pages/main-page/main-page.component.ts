@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -17,10 +17,11 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor( private primengConfig: PrimeNGConfig ) { }
+  constructor(private rt: Router,) { }
 
   ngOnInit(): void {
-    this.primengConfig.ripple = true;
+    const token = localStorage.getItem('x-token');
+    if (token) this.rt.navigate(['/dashboard']);
   }
 
 }

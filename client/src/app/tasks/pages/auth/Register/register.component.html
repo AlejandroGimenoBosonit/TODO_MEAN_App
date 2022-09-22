@@ -1,0 +1,33 @@
+<div class="card-container">
+  <!-- card -->
+  <p-card
+    header="Register Form"
+    class="flex flex-row flex-wrap justify-content-center"
+    [style]="{ 'max-width': '500px', height: '100%' }"
+  >
+    <hr />
+
+    <app-register-form></app-register-form>
+
+    <ng-template pTemplate="footer">
+      Do you have have an account already? <a routerLink="/tasks/auth/login">Login</a>!
+    </ng-template>
+  </p-card>
+  <!-- ---- -->
+  <!-- Debugging -->
+
+    <!-- <div class="debugging">
+        <h2>Form Valid: {{ myForm.valid }}</h2> 
+        
+        <h2>Form State: {{ myForm.status }}</h2>
+
+        <pre> name: {{ myForm.controls['name'].touched | json }} </pre>
+        <pre> name: {{ myForm.controls['name'].errors | json }} </pre>
+        <pre> second name: {{ myForm.controls['secondName'].errors | json }} </pre>
+        <pre> age: {{ myForm.controls['age'].errors | json }} </pre>
+        <pre> email {{ myForm.controls['email'].errors | json }} </pre>
+        <pre> pass1: {{ myForm.controls['password'].errors | json }} </pre>
+        <pre> pass2: {{ myForm.controls['password2'].errors | json }} </pre>
+    </div> -->
+</div>
+

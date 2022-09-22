@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'app-single-card',
+  templateUrl: './single-card.component.html',
   styles: [
   ]
 })
-export class DashboardComponent implements OnInit {
+export class SingleCardComponent implements OnInit {
 
   constructor() { }
 

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContentRoutingModule } from './content-routing.module';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule
+    ContentRoutingModule
   ]
 })
-export class PagesModule { }
+export class ContentModule { }

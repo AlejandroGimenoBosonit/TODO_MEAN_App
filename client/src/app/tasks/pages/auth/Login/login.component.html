@@ -1,0 +1,17 @@
+<div class="card-container">
+  <!-- card -->
+  <p-card
+    header="Login Form"
+    class="flex flex-row flex-wrap justify-content-center"
+    [style]="{ 'max-width': '500px', height: '100%' }"
+  >
+    <hr />
+
+    <app-login-form></app-login-form>
+
+    <ng-template pTemplate="footer">
+      Don't have an account? <a routerLink="/tasks/auth/login">Register</a>!
+    </ng-template>
+  </p-card>
+  <!-- ---- -->
+</div>

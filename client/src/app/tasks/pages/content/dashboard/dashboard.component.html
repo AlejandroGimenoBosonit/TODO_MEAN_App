@@ -1,0 +1,16 @@
+<!-- Card Element -->
+<div class="workspace">
+  <h2 class="workspace_title">
+    {{ userModel.name }} {{ userModel.secondName }}'s Workspace
+  </h2>
+  <hr />
+  <div class="matrix">
+    <div *ngFor="let card of userCards" >
+      <a class="card-element-container" routerLink="['/']">
+        <!-- <app-card-component [cardElement]="card"></app-card-component> -->
+      </a>
+    </div>
+  </div>
+</div>
+<!-- ------------ -->
+<!-- <pre>{{ userCards | json }}</pre> -->
