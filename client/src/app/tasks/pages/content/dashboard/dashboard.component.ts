@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { mergeMap } from 'rxjs';
+import { map, mergeMap, subscribeOn } from 'rxjs';
 import { authResponse, Card, UserInfo } from '../../../../interfaces/interface';
 import { AuthServiceService } from '../../auth/services/auth-service.service';
-import { CardsServiceService } from '../../auth/services/cards-service.service';
+import { ContentService } from '../services/content.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private rt: Router,
     private as: AuthServiceService,
-    private cs: CardsServiceService
+    private cs: ContentService
   ) { 
     this.userModel = {
       "_id":'',
@@ -53,28 +53,27 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token: string | null = localStorage.getItem('x-token');
-    // console.log( token );
-    if(token){
-
-      this.as.getUserData( token! )
+    // check for a token
+    if( this.as.isToken() ){
+      // get user token to apply
+      this.as
+          .getUserData( this.as.extractToken() )
           .pipe(
-            mergeMap( (response: authResponse) => {
+            mergeMap((response: authResponse)=>{
+              // update local user data
               this.userModel = response.user!;
               return this.cs.getAllCards(response.user?._id)
             })
           )
-          .subscribe(response => {
-            if( response.process_ok ){
-              this.userCards = response.card_list!;
-            } else {
-              //TODO: calling an alternative component to show there is no cards
-              console.log('there is no cards');
+          .subscribe(({process_ok, card_list})=>{
+            if(process_ok){
+              this.userCards = card_list!;
+            }else{
+              // TODO: Component: There's no cards
+              console.log('no cards');
             }
-          });
-
+          })
     }else{
-      // If there is no token then redirect to login page
       this.rt.navigate(['/login']);
     }
   }

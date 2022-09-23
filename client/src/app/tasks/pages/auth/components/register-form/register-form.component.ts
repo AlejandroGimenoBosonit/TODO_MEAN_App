@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from '../../services/auth-service.service';
 import { ValidationsServiceService } from '../../services/validations-service.service';
+import { map } from 'rxjs';
+import { authResponse } from '../../../../../interfaces/interface';
 
 @Component({
   selector: 'app-register-form',
@@ -65,19 +67,18 @@ export class RegisterFormComponent implements OnInit {
   register() {
     this.as
         .register( this.myForm.value )
-        .subscribe( response => {
-          const { process_ok, token } = response;
-          if(process_ok){
-            // store toke nat local storage
-            localStorage.setItem( 'x-token', token! );
-            // redirect to dashboard
-            this.rt.navigate(['/tasks/dashboard']);
-          }else{
-            // PROBLEM PAGE
-            console.log('nothing');
-          }
-          
-        })
+        .pipe(
+          map( (response: authResponse)=>{
+            if(response.process_ok){
+              this.as.storeToken( response.token! );
+              this.rt.navigate(['/tasks/dashboard']);
+            }else{
+              // PROBLEM PAGE
+              console.log('nothing');
+            }
+          })
+        )
+        .subscribe();
   }
 
 }

@@ -17,6 +17,19 @@ export class AuthServiceService {
   constructor( private http: HttpClient ) { }
 
   // methods
+
+  isToken(): boolean {
+    return !!localStorage.getItem('x-token')
+  }
+
+  storeToken(token: string): void {
+    localStorage.setItem('x-token', token);
+  }
+
+  extractToken(): string {
+    return localStorage.getItem('x-token')!;  
+  }
+
   register( payload: UserInfo ): Observable<authResponse> {
     // console.log(payload);
     // http request

@@ -6,8 +6,9 @@
   <hr />
   <div class="matrix">
     <div *ngFor="let card of userCards" >
-      <a class="card-element-container" routerLink="['/']">
-        <!-- <app-card-component [cardElement]="card"></app-card-component> -->
+      {{card._id}}
+      <a class="card-element-container" [routerLink]="['card', card._id]">
+        <app-card-component [cardElement]="card"></app-card-component>
       </a>
     </div>
   </div>

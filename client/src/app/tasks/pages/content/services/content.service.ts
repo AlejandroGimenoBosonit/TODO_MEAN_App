@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CardsServiceService {
+export class ContentService {
 
   // endpoint
   private _endPoint: string = environment.backEndPoint;
@@ -18,6 +18,4 @@ export class CardsServiceService {
   getAllCards( userId: any ): Observable<authResponse> {
     return this.http.get<authResponse>(`${this._endPoint}/dashboard/${userId}/all`);
   }
-
-  
 }

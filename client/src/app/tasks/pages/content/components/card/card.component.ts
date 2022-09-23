@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Card } from '../../../../../interfaces/interface';
-import { CardsServiceService } from '../../../auth/services/cards-service.service';
 
 @Component({
   selector: 'app-card-component',
-  templateUrl: './card-component.component.html',
+  templateUrl: './card.component.html',
   styles: [`
     .card-element {
       margin: 10px;
@@ -23,11 +22,11 @@ import { CardsServiceService } from '../../../auth/services/cards-service.servic
     } */
   `]
 })
-export class CardComponentComponent implements OnInit {
+export class CardComponent implements OnInit {
 
   @Input() cardElement!: Card;
 
-  constructor( private cs: CardsServiceService ) { }
+  constructor() { }
 
   ngOnInit(): void { 
   }
